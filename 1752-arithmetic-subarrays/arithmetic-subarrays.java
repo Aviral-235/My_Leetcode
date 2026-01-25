@@ -20,12 +20,7 @@ class Solution {
                 list.add(nums[j]);
             }
             Collections.sort(list);
-            if(check(list)==true){
-                ans.add(true);
-            }
-            else{
-                ans.add(false);
-            }
+            ans.add(check(list));
         }
         return ans;
     }
