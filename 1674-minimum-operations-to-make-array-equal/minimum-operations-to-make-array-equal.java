@@ -1,9 +1,8 @@
 class Solution {
     public int minOperations(int n) {
-        int res=0;
-        for(int i=0;i<n/2;i++){
-            res+= n-2*i-1;
-        }
-        return res;
+       if(n%2==0){
+        return (n/2)*(n/2);
+       }
+        return (n/2)*(n/2+1);
     }
 }
