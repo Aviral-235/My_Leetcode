@@ -1,46 +1,39 @@
+import java.util.List;
+import java.util.ArrayList;
+
 class Solution {
-    public int[][] generateMatrix(int n)
-    {
-        int res[][]=new int[n][n];
-        int count=1;
-
-        int rows=0;
-        int rowe=n-1;
-        int cols=0;
-        int cole=n-1;
-
-        while(rows<=rowe && cols<=cole)
-        {
-            for(int i=cols;i<=cole;i++)
-            {
-                res[rows][i]=count++;
+    public int[][] generateMatrix(int n) {
+        int arr[][]=new int [n][n];
+        int top = 0;
+        int left = 0;
+        int right =  n - 1;
+        int bottom = n - 1;
+        int j=1;
+        while (bottom >=top && right >= left) {
+            for (int i = left; i <= right; i++) {
+                arr[top][i]=j;
+                j++;
             }
-
-            for(int i=rows+1;i<=rowe;i++)
-            {
-                res[i][cole]=count++;
+            top++;
+            
+            for (int i = top; i <= bottom; i++) {
+                arr[i][right]=j;
+                j++;
             }
-
-            for(int i=cole-1;i>=cols;i--)
-            {
-                if(rows<rowe)
-                {
-                    res[rowe][i]=count++;
-                }
-            }
-
-            for(int i=rowe-1;i>=rows+1;i--)
-            {
-                if(cols<cole)
-                {
-                    res[i][cols]=count++;
-                }
-            }
-            rows++;
-            cols++;
-            rowe--;
-            cole--;
+            right--;
+             if(bottom>=top){
+            for (int i = right; i >= left; i--) {
+                arr[bottom][i]=j;
+                j++;
+            }}
+            bottom--;
+            if(right>=left){
+            for (int i = bottom; i >= top; i--) {
+                arr[i][left]=j;
+                j++;
+            }}
+            left++;
         }
-        return res;
+        return arr;
     }
 }
