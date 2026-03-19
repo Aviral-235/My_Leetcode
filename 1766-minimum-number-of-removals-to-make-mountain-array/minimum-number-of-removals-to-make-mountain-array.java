@@ -1,31 +1,30 @@
 class Solution {
     public int minimumMountainRemovals(int[] nums) {
-        int lis[]=new int[nums.length];
-        int lds[]=new int[nums.length];
-        lis[0]=1;
+        int lcs[]=new int[nums.length];
+        lcs[0]=1;
         for(int i=1;i<nums.length;i++){
-            lis[i]=1;
+            lcs[i]=1;
             for(int j=0;j<i;j++){
                 if(nums[i]>nums[j]){
-                    lis[i]=Math.max(lis[i],1+lis[j]);
+                    lcs[i]=Math.max(lcs[i],lcs[j]+1);
                 }
             }
         }
+        int lds[]=new int[nums.length];
         lds[nums.length-1]=1;
         for(int i=nums.length-2;i>=0;i--){
             lds[i]=1;
             for(int j=nums.length-1;j>i;j--){
                 if(nums[i]>nums[j]){
-                    lds[i]=Math.max(lds[i],1+lds[j]);
+                    lds[i]=Math.max(lds[i],lds[j]+1);
                 }
             }
         }
-        int max=0;
+        int res=0;
         for(int i=0;i<nums.length;i++){
-            if(lds[i]+lis[i]>max&& lis[i]>1&&lds[i]>1){
-                max=lds[i]+lis[i]-1;
-            }
+            if(lds[i]>1&&lcs[i]>1)
+            res=Math.max(res,lds[i]+lcs[i]-1);
         }
-        return nums.length-max;
+        return nums.length-res;
     }
 }
