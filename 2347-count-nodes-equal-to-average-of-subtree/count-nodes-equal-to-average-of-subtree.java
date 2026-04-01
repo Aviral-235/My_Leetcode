@@ -20,7 +20,7 @@ class Solution {
         q.add(root);
         while(q.isEmpty()==false){
             TreeNode c=q.poll();
-            int avg=sum(c)/no_nodes(c);
+            int avg=no_nodes(c);
             if(avg==c.val){
                 count++;
             }
@@ -35,25 +35,11 @@ class Solution {
     }
     public static int no_nodes(TreeNode root){
         int count=0;
-        Queue<TreeNode> q=new LinkedList<>();
-        q.add(root);
-        while(q.isEmpty()==false){
-            count++;
-            TreeNode temp=q.poll();
-            if(temp.left!=null){
-                q.add(temp.left);
-            }
-            if(temp.right!=null){
-                q.add(temp.right);
-            }
-        }
-        return count;
-    }
-    public static int sum(TreeNode root){
         int sum=0;
         Queue<TreeNode> q=new LinkedList<>();
         q.add(root);
         while(q.isEmpty()==false){
+            count++;
             TreeNode temp=q.poll();
             sum+=temp.val;
             if(temp.left!=null){
@@ -63,6 +49,22 @@ class Solution {
                 q.add(temp.right);
             }
         }
-        return sum;
+        return sum/count;
     }
+    // public static int sum(TreeNode root){
+    //     int sum=0;
+    //     Queue<TreeNode> q=new LinkedList<>();
+    //     q.add(root);
+    //     while(q.isEmpty()==false){
+    //         TreeNode temp=q.poll();
+    //         sum+=temp.val;
+    //         if(temp.left!=null){
+    //             q.add(temp.left);
+    //         }
+    //         if(temp.right!=null){
+    //             q.add(temp.right);
+    //         }
+    //     }
+    //     return sum;
+    // }
 }
