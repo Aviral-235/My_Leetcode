@@ -1,21 +1,18 @@
 class Solution {
     public int[] nextGreaterElements(int[] nums) {
-        int arr[]=new int[nums.length];
-        for(int i=0;i<nums.length;i++){
-            int j=(i+1)%nums.length;
-            boolean flag=false;
-            while(j!=i){
-                if(nums[j]>nums[i]){
-                    arr[i]=nums[j];
-                    flag=true;
-                    break;
-                }
-                j=(j+1)%nums.length;
+        Deque<Integer> st=new ArrayDeque<>();
+        int res[]=new int[nums.length];
+        Arrays.fill(res,-1);
+        for(int i=2*nums.length-1;i>=0;i--){
+            int curr=nums[i%nums.length];
+            while(st.isEmpty()==false&&st.peek()<=curr){
+                st.pop();
             }
-            if(flag==false){
-                arr[i]=-1;
+            if(i<nums.length&&st.isEmpty()==false){
+                res[i]=st.peek();
             }
+            st.push(nums[i%nums.length]);
         }
-        return arr;
+        return res;
     }
 }
