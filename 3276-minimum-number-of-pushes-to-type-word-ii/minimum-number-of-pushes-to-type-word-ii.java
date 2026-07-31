@@ -1,12 +1,5 @@
 class Solution {
     public int minimumPushes(String word) {
-        // Set<Character> set=new HashSet<>();
-        // for(int i=0;i<word.length();i++){
-        //     set.add(word.charAt(i));
-        // }
-        // if(set.size()<8){
-        //     return word.length();
-        // }
         int arr[]=new int[26];
         for(int i=0;i<word.length();i++){
             char c=word.charAt(i);
